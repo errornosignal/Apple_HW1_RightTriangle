@@ -8,62 +8,66 @@
 
 import Foundation
 
-var side1, side2, side3, apparentHypotenuse, temp, actualHypotenuse: Double
-side1 = 0.0
-side2 = 0.0
-side3 = 0.0
-apparentHypotenuse = 0.0
-actualHypotenuse = 0.0
-var inputString = ""
-var inputIsGood = false
+//print program header
+print("HW1-RightTriangle\n")
 
+//get and validate user input
 func validateDoubleInput(prompt: String) -> Double {
-    while(!inputIsGood) {
+    while(true) {
         print(prompt)
-        inputString = readLine()!
-        var side: Double = 0.0
+        let inputString = readLine()!
         
         if (NumberFormatter().number(from: inputString)?.doubleValue) != nil {
-            side = Double(inputString)!
+            let side = Double(inputString)!
+            
             if side >= 0.1 {
                 return side;
             }
             else {
-                print("Minimum value is 0.1")
+                print("Error! Minimum value is 0.1")
             }
         }
         else {
-            print("Input is not a double value.")
+            print("Error! Input is not a double value")
         }
     }
-    return 0;
 }
 
-print("HW1-RightTriangle\n")
+//set user input to variables
+let side1 = validateDoubleInput(prompt: "Enter length of side 1: ")
+let side2 = validateDoubleInput(prompt: "Enter length of side 2: ")
+let side3 = validateDoubleInput(prompt: "Enter length of side 3: ")
 
-side1 = validateDoubleInput(prompt: "Enter length of side 1: ")
-side2 = validateDoubleInput(prompt: "Enter length of side 2: ")
-side3 = validateDoubleInput(prompt: "Enter length of side 3: ")
+//add variables to array and sort
+var sidesArray = [side1, side2, side3]
+sidesArray.sort()
 
-var array = [side1, side2, side3]
-array.sort()
+//perform mathematical computations
+let side1Sqrd = pow(sidesArray[0],2)
+let side2Sqrd = pow(sidesArray[1],2)
+let side3Sqrd = pow(sidesArray[2],2)
+let actualHypotenuse = sqrt(side1Sqrd + side2Sqrd)
 
-var side1Sqrd = pow(array[0],2)
-var side2Sqrd = pow(array[1],2)
-var side3Sqrd = pow(array[2],2)
-
-temp = side1Sqrd+side2Sqrd
-actualHypotenuse = sqrt(temp)
-
-print("side1 = \(String(describing: array[0]))")
-print("side2 = \(String(describing: array[1]))")
-print("side3 = \(String(describing: array[2]))")
-print("apparentHypotenuse = \(String(describing: array[2]))")
+//output all values to console
+print("\nside1 = \(String(describing: sidesArray[0]))")
+print("side2 = \(String(describing: sidesArray[1]))")
+print("side3 = \(String(describing: sidesArray[2]))")
+print("apparentHypotenuse = \(String(describing: sidesArray[2]))")
 print("actualHypotenuse = \(String(describing: actualHypotenuse))")
 
-if temp == side3Sqrd {
-    print("Triangle IS right.")
+//confirm triangle type *INCLUDES BONUS*
+if side1Sqrd + side2Sqrd == side3Sqrd {
+    print("Triangle is RIGHT\n")
+}
+else if side1 == side2 && side1 == side3 {
+    print ("Triangle is EQUILATERAL")
+}
+else if side1 == side2 || side1 == side3 || side2 == side3 {
+    print ("Triangle is ISOSCELES")
+}
+else if side1 != side2 && side1 != side3 && side2 != side3 {
+    print("Triangle is SCALENE\n")
 }
 else {
-    print("Triangle IS NOT right")
+    //do nothing
 }
