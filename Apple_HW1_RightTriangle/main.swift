@@ -49,7 +49,8 @@ let side3Sqrd = pow(sidesArray[2],2)
 let actualHypotenuse = sqrt(side1Sqrd + side2Sqrd)
 
 //output all values to console
-print("\nside1 = \(String(describing: sidesArray[0]))")
+print("\n")
+print("side1 = \(String(describing: sidesArray[0]))")
 print("side2 = \(String(describing: sidesArray[1]))")
 print("side3 = \(String(describing: sidesArray[2]))")
 print("apparentHypotenuse = \(String(describing: sidesArray[2]))")
@@ -60,10 +61,10 @@ if side1Sqrd + side2Sqrd == side3Sqrd {
     print("Triangle is RIGHT\n")
 }
 else if side1 == side2 && side1 == side3 {
-    print ("Triangle is EQUILATERAL")
+    print("Triangle is EQUILATERAL\n")
 }
 else if side1 == side2 || side1 == side3 || side2 == side3 {
-    print ("Triangle is ISOSCELES")
+    print("Triangle is ISOSCELES\n")
 }
 else if side1 != side2 && side1 != side3 && side2 != side3 {
     print("Triangle is SCALENE\n")
