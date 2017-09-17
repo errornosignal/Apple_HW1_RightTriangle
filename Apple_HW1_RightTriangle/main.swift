@@ -68,4 +68,3 @@ else if side1 != side2 && side1 != side3 && side2 != side3 {
     print("Triangle is SCALENE\n")
 }
 else {/*do nothing*/}
-//END OF PROGRAM
